@@ -7,12 +7,63 @@
 
 3、生成项目所需信息文件package.json（项目名不能是大写）
    cmd窗口进入gulpproject目录（可参考附件）,输入命令npm init，一路按enter完成后自动生成package.json文件。
+   这里第一次安装的时候，package.json文件自动生成为如下：
+   package.json文件：
+		 {
+		  "name": "webapp",
+		  "version": "1.0.0",
+		  "description": "",
+		  "main": "gulpfile.js",
+		  "scripts": {
+		    "test": "echo \"Error: no test specified\" && exit 1"
+		  },
+		  "author": "",
+		  "license": "ISC"
+		}
 
 4、项目根目录下安装gulp
-   全局安装gulp后，还需要在每个要使用gulp的项目中都单独安装一次。完成后会生成node_modules文件夹。
-   npm install gulp --save-dev
-   安装自动化插件命令：
-   npm install del gulp-concat gulp-merge gulp-jshint gulp-minify-css gulp-minify-html gulp-ng-annotate gulp-ng-template gulp-sequence gulp-uglify gulp-util gulp-autoprefixer gulp-cache --save
+   （1）全局安装gulp后，还需要在每个要使用gulp的项目中都单独安装一次。完成后会生成node_modules文件夹。
+        npm install gulp --save-dev   （生成node_modules文件，里边只包含gulp文件夹，不包含所有的自动化插件）
+  （2） 执行安装自动化插件命令：
+        npm install del gulp-concat gulp-merge gulp-jshint gulp-minify-css gulp-minify-html gulp-ng-annotate gulp-ng-template gulp-sequence gulp-uglify gulp-util gulp-autoprefixer gulp-cache --save
+
+   执行完自动化插件命令之后，package.json文件发生变化，增加很多文件如下：
+   package.json文件：
+		   {
+		  "name": "webapp",
+		  "version": "1.0.0",
+		  "description": "",
+		  "main": "index.js",
+		  "scripts": {
+		    "test": "echo \"Error: no test specified\" && exit 1"
+		  },
+		  "author": "",
+		  "license": "ISC",
+		  "devDependencies": {
+		    "gulp": "^3.9.1"
+		  },
+		  "dependencies": {
+		    "del": "^3.0.0",
+		    "gulp": "^3.9.1",
+		    "gulp-autoprefixer": "^4.0.0",
+		    "gulp-cache": "^0.4.6",
+		    "gulp-concat": "^2.6.1",
+		    "gulp-jshint": "^2.0.4",
+		    "gulp-merge": "^0.1.1",
+		    "gulp-minify-css": "^1.2.4",
+		    "gulp-minify-html": "^1.0.6",
+		    "gulp-ng-annotate": "^2.0.0",
+		    "gulp-ng-template": "^0.2.3",
+		    "gulp-sequence": "^0.4.6",
+		    "gulp-uglify": "^3.0.0",
+		    "gulp-util": "^3.0.8",
+		    "jshint": "^2.9.4"
+		  }
+		}
+   }
+   
+   注意：等到第二次，第三次.....使用的时候，直接可以把此时生成的package.json文件复制到新目录下，
+   执行命令：npm install（会生成）个node-modules的文件夹，包含所有需要的自动化插件
    
 
 详细解释命令：
