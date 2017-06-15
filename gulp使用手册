@@ -7,60 +7,13 @@
 
 3、生成项目所需信息文件package.json（项目名不能是大写）
    cmd窗口进入gulpproject目录（可参考附件）,输入命令npm init，一路按enter完成后自动生成package.json文件。
-   示例package.json
-         {
-        "name": "webapp",
-        "version": "1.0.0",
-        "description": "",
-        "main": "index.js",
-        "scripts": {
-          "test": "echo \"Error: no test specified\" && exit 1"
-        },
-        "author": "",
-        "license": "ISC",
-        "devDependencies": {
-          "del": "^3.0.0",
-          "gulp": "^3.9.1",
-          "gulp-cssnano": "^2.1.2",
-          "gulp-uglify": "^3.0.0"
-        }
-      }
-      
-   完整的package.json文件如下：可以自己先配好，每次使用直接拿来复用
-         {
-        "name": "webapp",
-        "version": "1.0.0",
-        "description": "",
-        "main": "index.js",
-        "dependencies": {
-          "del": "^1.1.1",
-          "gulp": "^3.8.10",
-          "gulp-concat": "^2.4.3",
-          "gulp-merge": "^0.1.0",
-          "gulp-jshint": "^1.9.0",
-          "gulp-minify-css": "^0.3.12",
-          "gulp-minify-html": "^0.1.8",
-          "gulp-ng-annotate": "^0.4.3",
-          "gulp-ng-template": "^0.1.1",
-          "gulp-sequence": "^0.3.1",
-          "gulp-uglify": "^1.0.2",
-          "gulp-util": "^3.0.2"
-        },
-        "devDependencies": {},
-        "scripts": {
-          "test": "echo \"Error: no test specified\" && exit 1"
-        },
-        "keywords": [
-          "nodes"
-        ],
-        "author": "Zan",
-        "license": "MIT"
-      }
-
 
 4、项目根目录下安装gulp
    全局安装gulp后，还需要在每个要使用gulp的项目中都单独安装一次。完成后会生成node_modules文件夹。
    npm install gulp --save-dev
+   安装自动化插件命令：
+   npm install del gulp-concat gulp-merge gulp-jshint gulp-minify-css gulp-minify-html gulp-ng-annotate gulp-ng-template gulp-sequence gulp-uglify gulp-util gulp-autoprefixer gulp-cache --save
+   
 
 详细解释命令：
   (1) npm install <name>   
@@ -84,25 +37,10 @@
    #安装gulp-cssnano（压缩css插件）
      npm install gulp-cssnano --save-dev
    #安装del
-     npm install del --save-dev
-     
-     
-    "del": "^1.1.1",
-    "gulp": "^3.8.10",
-    "gulp-concat": "^2.4.3",
-    "gulp-merge": "^0.1.0",
-    "gulp-jshint": "^1.9.0",
-    "gulp-minify-css": "^0.3.12",
-    "gulp-minify-html": "^0.1.8",
-    "gulp-ng-annotate": "^0.4.3",
-    "gulp-ng-template": "^0.1.1",
-    "gulp-sequence": "^0.3.1",
-    "gulp-uglify": "^1.0.2",
-    "gulp-util": "^3.0.2"
-    
+     npm install del --save-dev    
     
 
-6、配置项目的gulpfile.js
+6、新建gulpfile.js文件，并且配置项目的gulpfile.js
 
 'use strict';
 
