@@ -25,8 +25,7 @@
    （1）全局安装gulp后，还需要在每个要使用gulp的项目中都单独安装一次。完成后会生成node_modules文件夹。
         npm install gulp --save-dev   （生成node_modules文件，里边只包含gulp文件夹，不包含所有的自动化插件）
   （2） 执行安装自动化插件命令：
-        npm install del gulp-concat gulp-merge gulp-jshint gulp-minify-css gulp-minify-html gulp-ng-annotate gulp-ng-template gulp-sequence gulp-uglify gulp-util gulp-autoprefixer gulp-cache --save
-
+        npm install del gulp-concat gulp-merge gulp-jshint gulp-minify-css gulp-minify-html gulp-ng-annotate gulp-ng-template gulp-sequence gulp-uglify gulp-util gulp-autoprefixer gulp-cache  gulp-ruby-sass gulp-imagemin gulp-notify gulp-rename gulp-livereload --save
    执行完自动化插件命令之后，package.json文件发生变化，增加很多文件如下：
    package.json文件：
 		   {
