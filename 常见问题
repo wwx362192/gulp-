@@ -1,0 +1,41 @@
+1、安装jshint时报错 can not find module gulp-jshint
+   --是因为需要执行以下命令：npm install --save-dev jshint gulp-jshint
+   需要先装jshint才可以避免此问题
+   
+2、按先后顺序加载打包脚本
+   --
+   （1）首先需要加载各种依赖文件
+   var order = require('gulp-order');
+   var coffee = require('gulp-coffee');
+   var jshint = require('gulp-jshint');
+   var gif = require('gulp-if');
+   var print = require('gulp-print').default;  //不可以忘掉default，否则会报错找不到
+   function stringEndsWith(str, suffix) {
+        return str.indexOf(suffix, str.length - suffix.length) !== -1;
+    }
+
+  function isCoffeeFile(file) {
+      return stringEndsWith(file.relative, 'coffee');
+  }
+
+gulp.task('concat', function() {
+	gulp.src(["./lib/*.js",'./js/*.js']) //这里的文件顺序不影响，只是为了确保那些文件下的js参与合并
+		.pipe(print())
+    .pipe(gif(isCoffeeFile, coffee()))
+    //order里边配置各种执行顺序文件
+		.pipe(order([  
+			'jquery.min.js',
+			'vue.min.js',
+			'amain.js',
+			'!b.js',  //非b.js文件加载
+			'b.js'    //最后加载b.js文件
+		]))
+		.pipe(jshint())
+		.pipe(jshint.reporter('default'))
+		.pipe(concat('all.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('./'));
+});
+
+gulp.task('default', ['concat']);
+   
