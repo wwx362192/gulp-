@@ -10,32 +10,24 @@
    var jshint = require('gulp-jshint');
    var gif = require('gulp-if');
    var print = require('gulp-print').default;  //不可以忘掉default，否则会报错找不到
-   function stringEndsWith(str, suffix) {
-        return str.indexOf(suffix, str.length - suffix.length) !== -1;
-    }
 
-  function isCoffeeFile(file) {
-      return stringEndsWith(file.relative, 'coffee');
-  }
-
-gulp.task('concat', function() {
+   gulp.task('concat', function() {
 	gulp.src(["./lib/*.js",'./js/*.js']) //这里的文件顺序不影响，只是为了确保那些文件下的js参与合并
-		.pipe(print())
-    .pipe(gif(isCoffeeFile, coffee()))
-    //order里边配置各种执行顺序文件
-		.pipe(order([  
+	    .pipe(print())//命令中打印压缩的文件
+              //order里边配置各种执行顺序文件
+	    .pipe(order([  
 			'jquery.min.js',
 			'vue.min.js',
 			'amain.js',
 			'!b.js',  //非b.js文件加载
 			'b.js'    //最后加载b.js文件
 		]))
-		.pipe(jshint())
-		.pipe(jshint.reporter('default'))
-		.pipe(concat('all.min.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest('./'));
-});
+	   .pipe(jshint())//检查语法语句错误
+	   .pipe(jshint.reporter('default'))
+	   .pipe(concat('all.min.js')) //
+	   .pipe(uglify())//压缩
+	   .pipe(gulp.dest('./'));
+  });
 
 gulp.task('default', ['concat']);
    
